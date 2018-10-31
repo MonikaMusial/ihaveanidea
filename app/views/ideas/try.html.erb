@@ -1,0 +1,22 @@
+
+
+<p>
+  <strong>Great! You are trying this idea</strong>
+</p>
+<p>
+	Title: <%= @idea.title %>
+</p>
+
+<p>
+	If you already tried, give your rating:
+</p>
+
+
+  <div class="field">
+  
+    <%= select(:useridea, [['horrible', 1], ['poor', 2], ['mediocre', 3], ['good', 4], ['great', 5]]) %>
+  </div>
+
+
+
+<%= link_to 'Back', ideas_path %>

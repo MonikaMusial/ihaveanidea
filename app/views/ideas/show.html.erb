@@ -1,0 +1,14 @@
+
+<p>
+  <strong>Title:</strong>
+  <%= @idea.title %>
+</p>
+
+<p>
+  <strong>Average rating:</strong>
+  <%= @idea.average_rating %>
+</p>
+
+<%= link_to 'Try me', try_path(@idea) %> 
+<%= link_to 'Edit', edit_idea_path(@idea) %> |
+<%= link_to 'Back', ideas_path %>
