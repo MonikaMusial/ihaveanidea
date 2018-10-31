@@ -11,12 +11,17 @@
 	If you already tried, give your rating:
 </p>
 
-
+<%= form_with(model: @idea, local: true) do |form| %>
   <div class="field">
   
-    <%= select(:useridea, [['horrible', 1], ['poor', 2], ['mediocre', 3], ['good', 4], ['great', 5]]) %>
+   <%= form.select(@idea.average_rating, [['horrible', 1], ['poor', 2], ['mediocre', 3], ['good', 4], ['great', 5]]) %> 
+  </div>
+  <div class="field">
+    <%= form.text_field :title %>
   </div>
 
-
-
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 <%= link_to 'Back', ideas_path %>

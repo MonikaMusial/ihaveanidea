@@ -22,7 +22,10 @@ class IdeasController < ApplicationController
   end
 
   def try
-    @idea = Idea.find(params[:id])
+    #@idea = Idea.find(params[:id])
+    #@user = User.find_by id: session[:user_id]
+    #@user = User.find(current_user.id)
+    #@idea.users << User.find(1)
     #flash[:notice]="You are trying new challenge, good luck!"
   end
 
@@ -74,6 +77,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:title, :average_rating)
+      params.require(:idea).permit(:title, :rating)
     end
 end
