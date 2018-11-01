@@ -1,7 +1,6 @@
 class CreateIdeas < ActiveRecord::Migration[5.2]
   def change
     create_table :ideas do |t|
-      t.id :id
       t.string :title
       t.integer :average_rating
 
