@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :try]
+  
 
   # GET /ideas
   # GET /ideas.json
@@ -22,11 +23,13 @@ class IdeasController < ApplicationController
   end
 
   def try
-    #@idea = Idea.find(params[:id])
+     # flash[:notice]="You are trying new challenge, good luck!" + params.to_str
+    @idea = Idea.find(params[:id])
     #@user = User.find_by id: session[:user_id]
     #@user = User.find(current_user.id)
-    #@idea.users << User.find(1)
-    #flash[:notice]="You are trying new challenge, good luck!"
+    @idea.users << current_user
+
+    #  flash[:notice]="You are trying new challenge, good luck!" + params[:rating]
   end
 
   # POST /ideas
