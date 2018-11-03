@@ -22,6 +22,9 @@ class IdeasController < ApplicationController
   def edit
   end
 
+  def rate
+  end
+
   def try
      # flash[:notice]="You are trying new challenge, good luck!" + params.to_str
     @idea = Idea.find(params[:id])
