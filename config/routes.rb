@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get 'welcome/about', to: 'welcome#about'
   get 'ideas/:id/try', to: 'ideas#try', as: 'try'
   get 'ideas/:id/try', to: 'ideas#rate', as: 'rateidea'
-  get 'my_account', to: 'users#my_account'
+
 end
 
