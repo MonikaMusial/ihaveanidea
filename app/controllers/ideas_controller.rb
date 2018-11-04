@@ -1,3 +1,4 @@
+
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :try]
   
@@ -11,6 +12,11 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    if UserIdea.where(idea_id:params[:id],user_id:current_user).count != 0 
+      respond_to do |format|
+        format.html {redirect_to try_path(@idea)}
+      end
+    end
   end
 
   # GET /ideas/new
@@ -22,15 +28,14 @@ class IdeasController < ApplicationController
   def edit
   end
 
-  def rate
-  end
-
   def try
      # flash[:notice]="You are trying new challenge, good luck!" + params.to_str
-    @idea = Idea.find(params[:id])
+    if UserIdea.where(idea_id:params[:id],user_id:current_user).count == 0 
+      @idea = Idea.find(params[:id])
     #@user = User.find_by id: session[:user_id]
     #@user = User.find(current_user.id)
-    @idea.users << current_user
+      @idea.users << current_user
+    end
 
     #  flash[:notice]="You are trying new challenge, good luck!" + params[:rating]
   end
@@ -55,7 +60,10 @@ class IdeasController < ApplicationController
   # PATCH/PUT /ideas/1.json
   def update
     respond_to do |format|
-      if @idea.update(idea_params)
+      if !params[:rating].nil?
+        format.html { redirect_to @idea, notice: 'Rating was added!' }
+        format.json { render :show, status: :ok, location: @idea }
+      elsif @idea.update(idea_params)
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
       else
@@ -82,7 +90,7 @@ class IdeasController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def idea_params
-      params.require(:idea).permit(:title, :rating)
-    end
+    #def idea_params
+     # params.require(:idea).permit(:title,:average_rating)
+    #end
 end

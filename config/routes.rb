@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get 'welcome/home', to: 'welcome#home'
   get 'welcome/about', to: 'welcome#about'
   get 'ideas/:id/try', to: 'ideas#try', as: 'try'
-  get 'ideas/:id/try', to: 'ideas#rate', as: 'rateidea'
+  post 'ideas/:id/try', to: 'user_ideas#update'
+  get 'ideas/:id/user_idea', to: 'user_ideas#show'
 
 end
 

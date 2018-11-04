@@ -1,0 +1,18 @@
+
+<p>
+	<% @idea = Idea.find(params[:id]) %>
+
+	Idea: <%= @idea.title %>
+</p>
+
+<p>
+	<% @useridea = UserIdea.where(idea_id:params[:id],user_id:current_user).take %>
+	Your rating: 
+    <%= if !@useridea.nil?
+            @useridea.rating 
+        end
+    %>
+</p>
+
+
+<%= link_to 'Back', ideas_path %>
