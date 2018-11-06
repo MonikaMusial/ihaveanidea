@@ -2,26 +2,21 @@ class UserIdeasController < ApplicationController
  before_action :set_user_idea, only: [:show, :edit, :update, :destroy, :try]
 
     def new
-      @useridea = UserIdea.new
+      @user_idea = UserIdea.new
     end
 
     def create
 
-      #@useridea=UserIdea.where(idea_id:params[:id],user_id:current_user).take
-      #@useridea = UserIdea.last
-      #@useridea.rating = 8
-      #@useridea = UserIdea.new
-      #@idea = Idea.find(1)
-      #@idea.users << User.find(1)
+
     end
 
     def update
-      @userid = UserIdea.where(idea_id:params[:id],user_id:current_user).take
+      @user_id = UserIdea.where(idea_id:params[:id],user_id:current_user).take
 
       respond_to do |format|
-        if !params[:rating].nil? and !@userid.nil?
-          @userid.rating = params[:rating]
-          @userid.save
+        if !params[:rating].nil? and !@user_id.nil?
+          @user_id.rating = params[:rating]
+          @user_id.save
           @idea = Idea.find(params[:id])
           @idea.average_rating=UserIdea.where(idea_id:params[:id]).average(:rating)
           @idea.save

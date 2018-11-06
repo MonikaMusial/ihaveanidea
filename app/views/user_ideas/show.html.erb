@@ -6,10 +6,10 @@
 </p>
 
 <p>
-	<% @useridea = UserIdea.where(idea_id:params[:id],user_id:current_user).take %>
+	<% @user_idea = UserIdea.where(idea_id:params[:id],user_id:current_user).take %>
 	Your rating: 
-    <%= if !@useridea.nil?
-            @useridea.rating 
+    <%= if !@user_idea.nil?
+            @user_idea.rating 
         end
     %>
 </p>
